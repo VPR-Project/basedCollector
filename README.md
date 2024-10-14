@@ -7,7 +7,7 @@ Here is the list of what based can do in seconds:
 + VPN check (with a basic brand detection)
 + TOR check
 + Getting OS information
-+ Get hardware and UUID information.
++ Geting basic hardware and UUID information.
 
 ---
 
