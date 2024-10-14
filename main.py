@@ -102,6 +102,7 @@ pc_name = p.node()
 operating_system = p.system()
 
 #! Export session
+'''
 data = {
     "network":{
         "ip":ip,
@@ -112,7 +113,12 @@ data = {
         "vpn_provider":vpn_provider
     },
     "geolocation":{
-        "country":country
+        "country":country,
+        "city":city,
+        "latitude":latitude,
+        "longitude":longitude,
+        "zip_code":zip_code,
+        "timezone":timezone
     },
     "hardware":{
         "uuid":uuid,
@@ -133,3 +139,39 @@ data = {
 
 webhook_url = "YOUR_WEBHOOK_URL"
 response = post(webhook_url, json=data)
+'''
+
+with open('info.json', 'w', encoding='utf-8') as f:
+    f.write('{\n')
+    f.write('\t"network":{\n')
+    f.write(f'\t\t"ip":"{ip}",\n')
+    f.write(f'\t\t"is_tor":{is_tor},\n'.lower())
+    f.write(f'\t\t"is_vpn":{is_vpn},\n'.lower())
+    f.write(f'\t\t"company":"{company}",\n')
+    f.write(f'\t\t"suspicious":{networkSuspicious},\n'.lower())
+    f.write(f'\t\t"vpn_provider":{vpn_provider}\n'.replace("'", '"'))
+    f.write('\t},\n')
+    f.write('\t"geolocation":{\n')
+    f.write(f'\t\t"country":"{country}",\n')
+    f.write(f'\t\t"city":"{city}",\n')
+    f.write(f'\t\t"latitude":"{latitude}",\n')
+    f.write(f'\t\t"longitude":"{longitude}",\n')
+    f.write(f'\t\t"zip_code":"{zip_code}",\n')
+    f.write(f'\t\t"timezone":"{timezone}"\n')
+    f.write('\t},\n')
+    f.write('\t"hardware":{\n')
+    f.write(f'\t\t"uuid":"{uuid}",\n')
+    f.write(f'\t\t"threads":"{cpu_threads}",\n')
+    f.write(f'\t\t"ram_GiB":"{ram_GiB}",\n')
+    f.write(f'\t\t"ram_GB":"{ram_GB}"\n')
+    f.write('\t},\n')
+    f.write('\t"software":{\n')
+    f.write(f'\t\t"operating_system":"{operating_system}",\n')
+    f.write(f'\t\t"pc_name":"{pc_name}",\n')
+    f.write(f'\t\t"release":"{release}",\n')
+    f.write(f'\t\t"version":"{version}",\n')
+    f.write(f'\t\t"edition":"{edition}",\n')
+    f.write(f'\t\t"arch":"{arch}",\n')
+    f.write(f'\t\t"app_version":"{app_version}"\n')
+    f.write('\t}\n')
+    f.write('}\n')
