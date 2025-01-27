@@ -29,7 +29,7 @@
 **Does it work with Discord webhooks?**
 - It is currently not working, but we will implement it.
 
-**What are the dedected VPNs?**
+**What are the detected VPNs?**
 | Name           | Versions | Coverage | Last updated |
 | -------------- | -------- | -------- | ------------ |
 | Proton VPN     | Both     | Full     | v0.1.2       |
