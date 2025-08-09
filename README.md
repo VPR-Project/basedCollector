@@ -40,9 +40,8 @@
 | PrivadoVPN     | Free     | Full     | v0.1.3       |
 | Hide.me        | Free     | Full     | v0.1.3       |
 
-"Versions" means the version of that VPN we have covered.
-
 ### Click for [changelog](CHANGELOG.md)
 
 
 [![Star History Chart](https://api.star-history.com/svg?repos=VPR-Project/basedCollector&type=Date)](https://star-history.com/#VPR-Project/basedCollector&Date)
+
